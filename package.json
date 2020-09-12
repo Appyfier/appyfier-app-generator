@@ -1,0 +1,25 @@
+{
+  "name": "express_promise_test",
+  "version": "1.0.0",
+  "description": "Web 2 App Convertor Backend",
+  "main": "server.js",
+  "scripts": {
+    "babel-node": "babel-node --presets es2015",
+    "start": "babel src -d dist && node dist/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "empty-trash": "^3.0.0",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.1.4",
+    "fs-extra": "^7.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "nodemon": "^1.19.0"
+  }
+}

@@ -1,0 +1,6 @@
+node_modules/
+dist/
+process_directory/
+public/
+.DS_Store
+
