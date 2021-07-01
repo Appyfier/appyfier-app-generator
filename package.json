@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "babel-node": "babel-node --presets es2015",
-    "start": "babel src -d dist && node dist/server.js"
+    "start": "babel src -d dist && node dist/server.js",
+    "setup": "mkdir process_directory && mkdir public && cd public && mkdir GeneratedApks"
   },
   "author": "",
   "license": "ISC",

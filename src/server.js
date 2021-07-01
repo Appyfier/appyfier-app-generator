@@ -72,7 +72,7 @@ app.post("/generate-app", validateApi, queueAPICall, async (req, res) => {
     );
 
     await CommandExecuter.executeCommand(
-      `cd ${rootDir}/process_directory/${folderName} && react-native-rename ${name} -b ${projId}`
+      `cd ${rootDir}/process_directory/${folderName} && npx react-native-rename-next ${name} -b ${projId}`
     );
 
     await FileHandler.replaceText(
@@ -124,62 +124,62 @@ app.post("/generate-app", validateApi, queueAPICall, async (req, res) => {
     if (splashMDPI) {
       splashMDPI.mv(
         `${rootDir}/process_directory/${folderName}/android/app/src/main/res/drawable-mdpi/launch_screen.png`,
-        err => console.log(err)
+        (err) => console.log(err)
       );
     }
     if (splashHDPI) {
       splashHDPI.mv(
         `${rootDir}/process_directory/${folderName}/android/app/src/main/res/drawable-hdpi/launch_screen.png`,
-        err => console.log(err)
+        (err) => console.log(err)
       );
     }
     if (splashXHDPI) {
       splashXHDPI.mv(
         `${rootDir}/process_directory/${folderName}/android/app/src/main/res/drawable-xhdpi/launch_screen.png`,
-        err => console.log(err)
+        (err) => console.log(err)
       );
     }
     if (splashXXHDPI) {
       splashXXHDPI.mv(
         `${rootDir}/process_directory/${folderName}/android/app/src/main/res/drawable-xxhdpi/launch_screen.png`,
-        err => console.log(err)
+        (err) => console.log(err)
       );
     }
     if (splashXXXHDPI) {
       splashXXXHDPI.mv(
         `${rootDir}/process_directory/${folderName}/android/app/src/main/res/drawable-xxxhdpi/launch_screen.png`,
-        err => console.log(err)
+        (err) => console.log(err)
       );
     }
 
     if (iconMDPI) {
       iconMDPI.mv(
         `${rootDir}/process_directory/${folderName}/android/app/src/main/res/mipmap-mdpi/ic_launcher.png`,
-        err => console.log(err)
+        (err) => console.log(err)
       );
     }
     if (iconHDPI) {
       iconHDPI.mv(
         `${rootDir}/process_directory/${folderName}/android/app/src/main/res/mipmap-hdpi/ic_launcher.png`,
-        err => console.log(err)
+        (err) => console.log(err)
       );
     }
     if (iconXHDPI) {
       iconXHDPI.mv(
         `${rootDir}/process_directory/${folderName}/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png`,
-        err => console.log(err)
+        (err) => console.log(err)
       );
     }
     if (iconXXHDPI) {
       iconXXHDPI.mv(
         `${rootDir}/process_directory/${folderName}/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png`,
-        err => console.log(err)
+        (err) => console.log(err)
       );
     }
     if (iconXXXHDPI) {
       iconXXXHDPI.mv(
         `${rootDir}/process_directory/${folderName}/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png`,
-        err => console.log(err)
+        (err) => console.log(err)
       );
     }
 
@@ -196,7 +196,7 @@ app.post("/generate-app", validateApi, queueAPICall, async (req, res) => {
     console.log("Time taken..... (in Seconds)" + (t2 - t0) / 1000);
     timeout = timeout - predefinedTimeout > 0 ? timeout - predefinedTimeout : 0;
     return res.status(200).json({
-      downloadUrlPath: `http://localhost:${port}/GeneratedApks/${folderName}/app-release.apk`
+      downloadUrlPath: `http://localhost:${port}/GeneratedApks/${folderName}/app-release.apk`,
     });
   } catch (error) {
     console.log(error);
@@ -212,10 +212,10 @@ function queueAPICall(req, res, next) {
   if (timeout >= 120000) {
     return res.status(500).json({
       message:
-        "We are experiencing a high traffic right now, please try again in a minute"
+        "We are experiencing a high traffic right now, please try again in a minute",
     });
   }
-  setTimeout(function() {
+  setTimeout(function () {
     next();
   }, timeout);
   timeout = timeout + predefinedTimeout;
@@ -241,7 +241,7 @@ function validateApi(req, res, next) {
     if (!regex.test(projId)) {
       return res.status(400).json({
         message:
-          "Bundle Id is invalid. Please enter bundle id in the form of com.example.app"
+          "Bundle Id is invalid. Please enter bundle id in the form of com.example.app",
       });
     }
   }
@@ -249,7 +249,8 @@ function validateApi(req, res, next) {
     return res.status(400).json({ message: "Website url is required." });
   }
   if (url) {
-    const regex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+    const regex =
+      /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
     if (!regex.test(url)) {
       return res.status(400).json({ message: "Website url is invalid." });
     }
